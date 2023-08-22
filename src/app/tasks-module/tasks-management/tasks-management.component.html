@@ -1,0 +1,15 @@
+<app-tasks-sketch [linkTree]="linkTree">
+  <div class="mt-4">
+    <div class="mb-4">
+      <button (click)="onAddNewTaskCategory()" mat-flat-button color="primary" class="">Add columns</button>
+    </div>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list-2" (cdkDropListDropped)="drop2($event)">
+      <div cdkDropListGroup class="d-flex overflow-x-auto scroll-bar">
+        <!-- All lists in here will be connected. -->
+        <div class="example-container me-5" *ngFor=" let taskCategory of taskCategories" cdkDrag>
+          <app-tasks-category (onEditEmit) ="onEditTaskCategory($event)" [taskCategory]="taskCategory"></app-tasks-category>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-tasks-sketch>

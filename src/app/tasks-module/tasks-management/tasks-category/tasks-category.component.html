@@ -1,0 +1,27 @@
+<ng-container *ngIf="taskCategory">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex example-box-2">
+      <div class="task-cat-size me-3" [style.backgroundColor]="taskCategory.indexColor"></div>
+      <h6>{{taskCategory.name}}</h6>
+    </div>
+    <div>
+      <mat-icon matTooltip="add task" matTooltipPosition="above" class="cursor-pointer me-3"
+                svgIcon="addCircle"></mat-icon>
+      <mat-icon svgIcon="moreH" [matMenuTriggerFor]="menu" class="cursor-pointer"></mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onEditEmit.emit(taskCategory)">Edit</button>
+<!--        <button mat-menu-item>Details</button>-->
+      </mat-menu>
+    </div>
+  </div>
+
+  <div
+    cdkDropList
+    [cdkDropListData]="todo"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let item of todo" cdkDrag>
+      <app-task-item [taskCategory]="taskCategory"></app-task-item>
+    </div>
+  </div>
+</ng-container>

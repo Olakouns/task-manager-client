@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -12,7 +11,52 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$task-manager-front-primary: mat.define-palette(mat.$indigo-palette);
+
+$light-primary-text: white;
+$dark-primary-text: #212121;
+
+$my-black-color: #212121;
+$my-white-color: #F8F8F8;
+$my-orange-color: #E7492E;
+$my-green-color: #33AA44;
+$my-white-smoke-color: #E9E9E9;
+$my-dark-blue-color: #6A51FF;
+$my-blue-color: #007AFF;
+
+
+$primary-palette: (50: #e3f4ff,
+  100: #bbe2ff,
+  200: #8dd0ff,
+  300: #56bdff,
+  400: #1dadff,
+  500: #009eff,
+  600: #008fff,
+  700: #007AFF,
+  800: #1269ec,
+  900: #1f47cd,
+  A100: #b0e8ed,
+  A200: #7ed9e1,
+  A400: #26becd,
+  A700: #068f9a,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$task-manager-front-primary: mat.define-palette($primary-palette, $default: 700);
 $task-manager-front-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -35,5 +79,185 @@ $task-manager-front-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', "Helvetica Neue", sans-serif !important;
+  overflow-x: hidden;
+}
+
+
+.w-60 {
+  width: 60%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.h-100-vh {
+  height: 100vh;
+}
+
+.h1, h2, h3, h4, h5, h6, p {
+  color: $dark-primary-text;
+}
+
+.text-color {
+  color: $dark-primary-text !important;
+}
+
+.fs-12-px {
+  font-size: 12px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.login-button {
+  border-radius: 8px !important;
+  padding: 26px 40px !important;
+}
+
+.text-blue {
+  color: $my-blue-color;
+}
+
+.mat-list-item {
+
+  &:hover {
+    // color: #242424;
+    // background-color: rgba(46, 171, 129, 0.70);
+    // color: #ffffff !important;
+    border-left: 5px solid mat.get-color-from-palette($primary-palette, 700);
+    background-color: #e0b2cc !important;
+    border-radius: 12px !important;
+  }
+
+  .mat-list-icon {
+    margin-right: 0.5rem !important;
+  }
+
+  /* Note: If you're using an SVG icon, you should make the class target the `<svg>` element */
+  .mat-icon svg path {
+
+  }
+
+}
+
+.nav-menu {
+  border-radius: 50%;
+  background: rgba(0, 122, 255, 0.10);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.route-active {
+  background-color: $my-blue-color;
+
+  .icon-inactive {
+    svg {
+      path {
+        stroke: #fff !important;
+      }
+    }
+  }
+}
+
+.icon-inactive {
+  svg {
+    path {
+      stroke: #292D32 !important;
+    }
+  }
+}
+
+.icon-notifications {
+  cursor: pointer;
+  background-color: white;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 52px;
+  border-radius: 50%;
+  position: absolute;
+  left: -22px;
+
+  &-profile {
+    svg {
+      path {
+        stroke: $my-blue-color;
+      }
+    }
+  }
+}
+
+.breadcrumb {
+  background-color: transparent;
+  display: inline-flex;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+
+  li {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: $my-black-color;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  a {
+    color: $my-black-color;
+  }
+
+  .active {
+    color: mat.get-color-from-palette($primary-palette, 700);
+  }
+}
+
+.mdc-dialog__title::before {
+  height: auto !important;
+  background-color: red !important;
+}
+
+.dig-line {
+  background-color: $my-blue-color;
+  width: 100%;
+  height: 8px;
+}
+
+.scroll-bar{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroll-bar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.scroll-bar{
+  overflow: auto; /* Enable scrolling */
+}
+.bg-my-white {
+  background-color: $my-white-color;
+}
+
+.my-black-color {
+  color: $my-black-color;
+}

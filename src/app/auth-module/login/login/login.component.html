@@ -1,0 +1,56 @@
+<app-login-sketch>
+  <div class="">
+    <div>
+      <h1 class="text-color text-center fw-bold">Welcome back !</h1>
+      <p class="fs-12-px text-center">Don’t have account? Please <a routerLink="/auth/register"
+                                                                    class="text-primary cursor-pointer">sign up</a></p>
+    </div>
+
+    <div>
+      <!--      ERROR BOX HERE-->
+      <div *ngIf="isShowError">
+        <div class="alert alert-danger text-color">
+          {{errorMessage}}
+        </div>
+      </div>
+      <div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="d-flex flex-column mb-3">
+            <h6 class="mb-3">Email</h6>
+            <mat-form-field appearance="outline" class="w-100">
+              <input id="username" matInput formControlName="username" placeholder="username or email"
+                     [(ngModel)]="loginRequest.username">
+              <mat-error class="fs-12-px" *ngIf="form.controls['username']?.hasError('required')">Required field
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex flex-column">
+            <h6 class="mb-3">Password</h6>
+            <mat-form-field appearance="outline" [hideRequiredMarker]="false" class="w-100">
+              <input id="password" matInput formControlName="password" placeholder="password"
+                     [type]="hide ? 'password' : 'text'"
+                     [(ngModel)]="loginRequest.password">
+              <mat-error class="fs-12-px" *ngIf="form.controls['password']?.hasError('required')">Required field
+              </mat-error>
+              <button mat-icon-button matSuffix (click)="hide = !hide"
+                      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class="text-center">
+            <a routerLink="/auth/password-forgot" class="fs-12-px text-primary text-center mb-3">Forgot password ?</a>
+          </div>
+
+          <div class="d-flex justify-content-center mt-4">
+            <button mat-flat-button color="primary" *ngIf="!isLoading" class="login-button">Login</button>
+            <mat-spinner class="align-center" [diameter]="30" [strokeWidth]="3" *ngIf="isLoading"></mat-spinner>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</app-login-sketch>

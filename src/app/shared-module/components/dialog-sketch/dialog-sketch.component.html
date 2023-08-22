@@ -1,0 +1,21 @@
+<div class="p-3">
+  <div mat-dialog-title class="">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <h4 class="fs-4">{{title}}</h4>
+      <mat-icon svgIcon="close_circle" class="cursor-pointer" (click)="close()"></mat-icon>
+    </div>
+    <div class="dig-line mt-3 rounded-2"></div>
+  </div>
+
+  <div mat-dialog-content class="dialog-content mt-3">
+    <ng-content></ng-content>
+  </div>
+
+  <div mat-dialog-actions class="d-flex justify-content-center">
+    <button mat-flat-button color="primary" class="px-5 py-4" (click)="onSubmit()" [disabled]="!form.valid" *ngIf="!isLoading">
+      {{ validateText }} </button>
+    <mat-spinner class="align-center" *ngIf="isLoading" [diameter]="30" [strokeWidth]="3"></mat-spinner>
+  </div>
+</div>
+
+
