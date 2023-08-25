@@ -1,0 +1,6 @@
+export enum StatusUser {
+  ACTIVE = "ACTIVE",
+  SUSPENDED = "SUSPENDED",
+  ACTIVATION_PENDING = "ACTIVATION_PENDING"
+}
+

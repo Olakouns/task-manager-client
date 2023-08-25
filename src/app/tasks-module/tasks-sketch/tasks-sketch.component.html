@@ -1,0 +1,63 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened class="side-nav">
+    <div class="h-100-vh d-flex flex-column align-items-center overflow-hidden">
+      <div class="mt-5">
+        <h4 class="fw-bold text-blue">Ola.</h4>
+      </div>
+
+      <div class="mt-4">
+        <ng-container *ngFor="let link of links">
+          <div class="nav-menu mb-4" [ngClass]="{'route-active':router.isActive(link.link+'', false)}">
+            <a [routerLink]="[link.link]">
+              <div class=" d-flex align-items-center">
+                <mat-icon [svgIcon]="link.icon" class="icon-inactive" aria-hidden="false"></mat-icon>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+
+
+    <div class="container-fluid px-5 pt-5">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="col-4">
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput placeholder="Search">
+            <mat-icon matPrefix>search</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <div class="position-relative">
+            <img class="profile-image cursor-pointer" src="assets/images/default-profile.png"
+                 [matMenuTriggerFor]="menu">
+            <div class="icon-notifications" routerLink="/notifications">
+              <mat-icon [svgIcon]="'notifications'" class="icon-notifications-profile position-absolute"
+                        aria-hidden="false"></mat-icon>
+            </div>
+            <mat-menu #menu="matMenu">
+              <div>
+                <a mat-menu-item routerLink="/settings">Profile</a>
+                <a mat-menu-item (click)="logout()">Logout</a>
+              </div>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ol class="breadcrumb" *ngIf="linkTree && linkTree.length>0">
+          <li class="breadcrumb-item " *ngFor="let item of linkTree; let i=index;">
+            <a class="active fw-bold fs-4" *ngIf="i === linkTree.length-1" [href]="item.link">{{item.name}}</a>
+            <a class="fw-bold fs-4" *ngIf="i !== linkTree.length-1" [href]="item.link">{{item.name}}</a>
+          </li>
+        </ol>
+      </div>
+
+      <ng-content></ng-content>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

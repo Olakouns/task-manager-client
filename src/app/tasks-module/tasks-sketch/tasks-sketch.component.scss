@@ -1,0 +1,27 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: #F8F8F8;
+}
+
+.side-nav {
+  border: none;
+  border-right: 2px solid #e1e1e1;
+  width: 100px;
+  border-radius: 0 16px 16px 0;
+  background: #ffffff;
+  box-shadow: 5px 1px 5px 0 rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+
+.profile-image{
+  width: 89px;
+  height: 89px;
+  border-radius: 50%;
+}
+

@@ -1,0 +1,17 @@
+<div class="bg-white p-3 shadow-sm rounded-2 min-h position-relative dash">
+  <div class="position-absolute dash-action cursor-pointer">
+    <mat-icon class="" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="dashboard.id">Details</button>
+      <button mat-menu-item (click)="onEditEmit.emit(dashboard)">Edit</button>
+    </mat-menu>
+  </div>
+  <div class="d-flex align-items-center mb-3">
+    <img class="dash-image" src="assets/images/dashboard-default-img.jpg">
+    <h4 class="ms-3 fw-bold">{{dashboard.bordName}}</h4>
+  </div>
+
+  <div class="text-black-50">
+    {{dashboard.descriptions}}
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.min-h {
+  min-height: 160px;
+}
+
+.dash {
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    box-shadow: 5px 1px 64px 9px rgba(0,0,0,0.15) !important;
+    .dash-action{
+      display: block;
+    }
+  }
+  &-image {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  &-action {
+    display: none;
+    right: 16px;
+    top: 16px;
+  }
+}
