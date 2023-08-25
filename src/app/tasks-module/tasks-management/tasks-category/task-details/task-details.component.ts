@@ -54,7 +54,7 @@ export class TaskDetailsComponent implements OnInit {
       )
     );
     this.mediaFiles = this.data.tasks.mediaFiles
-    this.taskComments = this.data.tasks.taskComments;
+    this.taskComments = this.data.tasks.taskComments != null ? this.data.tasks.taskComments : new Array<TaskComment>();
   }
 
 
