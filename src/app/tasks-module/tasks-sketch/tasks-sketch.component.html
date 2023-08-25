@@ -40,7 +40,8 @@
             </div>
             <mat-menu #menu="matMenu">
               <div>
-                Menu here
+                <a mat-menu-item routerLink="/settings">Profile</a>
+                <a mat-menu-item (click)="logout()">Logout</a>
               </div>
             </mat-menu>
           </div>

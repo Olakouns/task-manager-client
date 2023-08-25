@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "ngx-skeleton-loader": "^7.0.0",
+    "@angular/material-moment-adapter": "^15.2.8",
+    "moment": "^2.29.4",
     "jwt-decode": "^3.1.2",
     "bootstrap": "^5.3.1",
     "rxjs": "~7.8.0",

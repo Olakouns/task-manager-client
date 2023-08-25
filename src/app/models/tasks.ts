@@ -3,10 +3,12 @@ import {MediaFile} from "./mediaFile";
 import {TaskCategory} from "./task-category";
 import {Dashboard} from "./dashboard";
 import {Profile} from "./profile";
+import {TaskComment} from "./task-comment";
 
 export class Tasks extends BaseEntity{
   id: string;
   title: string;
+  description: string;
   imageDescription: MediaFile;
   tags: Array<string>;
   badgeColor: Array<string>
@@ -15,4 +17,5 @@ export class Tasks extends BaseEntity{
   dashboard: Dashboard;
   profiles: Array<Profile>;
   mediaFiles: Array<MediaFile>
+  taskComments: Array<TaskComment>;
 }

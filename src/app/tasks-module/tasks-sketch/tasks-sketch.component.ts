@@ -57,4 +57,11 @@ export class TasksSketchComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  logout() {
+    if (localStorage.getItem("token") != null) {
+      localStorage.removeItem("token");
+    }
+    this.router.navigateByUrl("/auth/login").then();
+  }
 }

@@ -1,13 +1,13 @@
-<div class="task-card position-relative" >
-  <div class="position-absolute dash-action cursor-pointer">
+<div class="task-card position-relative" *ngIf="task">
+  <div class="position-absolute dash-action cursor-pointer" (click)="openTaskDetails()">
     <mat-icon class="text-black-50">visibility</mat-icon>
   </div>
   <div>
-    <div class="mb-4">
-      <div class="task-badge"></div>
+    <div class="mb-4 d-flex">
+      <div class="task-badge me-3" [style.background-color]="color"  *ngFor="let color of task.badgeColor"></div>
     </div>
-    <h6 class="fw-bold mb-4">Financial App</h6>
-    <div class="mb-4">
+    <h6 class="fw-bold mb-4">{{task.title}}</h6>
+    <div class="mb-4" *ngIf="task.imageDescription">
       <img class="task-image" src="assets/images/task-default-image.jpg">
     </div>
 
@@ -16,26 +16,32 @@
         <mat-icon svgIcon="addSimple"></mat-icon>
         <h6 class="mb-0">Tag</h6>
       </div>
-      <div class="ms-3 task-tag-1">Design</div>
-      <div class="ms-3 task-tag-2">App</div>
+      <div class="ms-3 task-tag-1" *ngFor="let tag of task.tags">{{tag}}</div>
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex">
         <mat-icon svgIcon="addSimple" class="cursor-pointer"></mat-icon>
         <div class="d-flex ms-1">
-          <img [class]="{'task-user-mr-11' : index ==1}"  class="task-user" *ngFor="let user of users; let index = index" [src]="user">
+          <ng-container *ngIf="task.profiles == undefined || task.profiles.length == 0 ; else elseProfile">
+            <img  class="task-user"
+                  src="assets/images/user-2.jpg">
+          </ng-container>
+          <ng-template #elseProfile>
+            <img [class]="{'task-user-mr-11' : index ==1}" class="task-user"
+                 *ngFor="let profile of task.profiles; let index = index" [src]="profile.photo.url">
+          </ng-template>
         </div>
       </div>
-      <div><h6 class="mb-0">12/12/12</h6></div>
+      <div><h6 class="mb-0" [class.text-danger]="isDatePassed()" >{{ task.deadline | date : 'dd/MM/YYYY'}}</h6></div>
       <div class="d-flex">
         <div class="d-flex align-items-center">
           <mat-icon svgIcon="comments"></mat-icon>
-          <h6 class="text-black-50 ms-2 mb-0">2</h6>
+          <h6 class="text-black-50 ms-2 mb-0">{{task.taskComments ? task.taskComments.length : 0}}</h6>
         </div>
         <div class="d-flex align-items-center ms-2">
           <mat-icon svgIcon="attachFile"></mat-icon>
-          <h6 class="text-black-50 ms-2 mb-0">12</h6>
+          <h6 class="text-black-50 ms-2 mb-0">{{task.mediaFiles ? task.mediaFiles.length: 0}}</h6>
         </div>
       </div>
     </div>

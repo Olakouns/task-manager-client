@@ -1,0 +1,134 @@
+<div mat-dialog-title class="p-0 position-relative">
+  <div class="line-details"></div>
+  <div class="d-flex justify-content-between p-custom">
+    <div class="w-100">
+      <input class="mb-3 input-title" [(ngModel)]="data.tasks.title" matInput>
+
+      <!--      <h4 class="mb-4">{{data.tasks.title}}</h4>-->
+
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <div class="d-flex align-items-center">
+          <div class="d-flex me-4">
+            <mat-icon svgIcon="addSimple" class="cursor-pointer"></mat-icon>
+            <div class="d-flex ms-1">
+              <ng-container
+                *ngIf="data.tasks.profiles == undefined || data.tasks.profiles.length == 0 ; else elseProfile">
+                <img class="task-user"
+                     src="assets/images/user-2.jpg">
+              </ng-container>
+              <ng-template #elseProfile>
+                <img [class]="{'task-user-mr-11' : index ==1}" class="task-user"
+                     *ngFor="let profile of data.tasks.profiles; let index = index" [src]="profile.photo.url">
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div class="me-3 task-tag-1" *ngFor="let tag of data.tasks.tags">{{tag}}</div>
+            <div class="cursor-pointer task-tag">
+              <mat-icon svgIcon="addSimple"></mat-icon>
+              <h6 class="mb-0">Tag</h6>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <button style="background: #E7492E !important;"  mat-flat-button color="accent" class="me-3" (click)="onCancel()"  *ngIf="!isSavedChange">Cancel</button>
+          <button mat-stroked-button color="primary" class="" (click)="onSaveChange()"  *ngIf="!isSavedChange"> save changes</button>
+          <mat-spinner class="align-center" *ngIf="isSavedChange" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="close-icon">
+      <mat-icon svgIcon="close_circle" class="cursor-pointer" (click)="close()"></mat-icon>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-content class="dialog-content mt-3">
+  <div class="row">
+    <div class="col-7">
+      <div class="p-body">
+        <div>
+          <h6 class="fw-bold">Task description</h6>
+          <textarea class="input-description w-100" [(ngModel)]="data.tasks.description"
+                    placeholder="Simple description here" rows="4"></textarea>
+        </div>
+
+        <div class="mt-4">
+          <h6 class="fw-bold">Discussion</h6>
+          <div>
+            <div class="d-flex">
+              <img class="task-user me-3"
+                   src="assets/images/user-2.jpg">
+              <div class="w-100">
+                <textarea [(ngModel)]="comment.text" class="w-100 comment-text" rows="4"></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+              <div>
+                <button style="background: #E7492E !important;"  mat-flat-button color="accent" class="me-3" (click)="onCancelComment()"  *ngIf="!isSavedComment">Cancel</button>
+                <button mat-stroked-button color="primary" class="" (click)="onSaveComment()"  *ngIf="!isSavedComment"> save</button>
+                <mat-spinner class="align-center" *ngIf="isSavedComment" [diameter]="25" [strokeWidth]="2"></mat-spinner>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3" *ngFor=" let comment of taskComments">
+            <div class="d-flex" >
+              <img class="task-user me-3"
+                   src="assets/images/user-2.jpg">
+              <div class="w-100">
+                <div class="w-100 comment-text">
+                  {{comment.text}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-5 d-flex">
+      <div class="h-line me-3"></div>
+      <div class="w-100">
+        <h6 class="fw-bold">Attachments</h6>
+        <div>
+          <div class="img-chooser cursor-pointer d-flex justify-content-center align-items-center"
+               (click)="fileInput.click()">
+            <div class="btn-chooser">
+              <p class="mb-0 fw-bold text-blue">{{ loadFileText }}</p>
+            </div>
+            <input hidden #fileInput type="file" id="file2" [accept]="acceptType" (change)="loadFile(fileInput.files)">
+          </div>
+        </div>
+
+        <div class="mt-4" *ngFor="let media of mediaFiles">
+          <div *ngIf="media.type == 'images'; else elseTemplate" class="position-relative">
+            <img class="attachment-image" [src]="mediaService.getImageURL(media.url)">
+            <mat-icon (click)="onRemoveFile(media.id)" svgIcon="close_circle_orange" class="cursor-pointer position-absolute" style="right:  18px; bottom: 12px"></mat-icon>
+          </div>
+
+          <ng-template #elseTemplate>
+            <div class="attachment-pdf d-flex justify-content-between align-items-center px-3">
+               <span>{{media.originalName}}</span>
+              <mat-icon (click)="onRemoveFile(media.id)"  svgIcon="close_circle_orange" class="cursor-pointer"></mat-icon>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,101 @@
+.line-details {
+  background-color: #007AFF;
+  width: 24px;
+  height: 171px;
+  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.p-custom {
+  padding: 35px 46px !important;
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.input-title {
+  padding: 12px 16px;
+  border-radius: 4px;
+  outline: none;
+  font-size: 24px;
+  border: none;
+
+  &:hover {
+    border: 1px solid #d4d4d4;
+  }
+
+  &:focus-visible {
+    border: 1px solid #d4d4d4;
+  }
+}
+
+.input-description {
+  padding: 12px 16px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+
+  &:hover {
+    border: 1px solid #d4d4d4;
+  }
+
+  &:focus-visible {
+    border: 1px solid #d4d4d4;
+  }
+}
+
+.p-body {
+  padding: 0 28px !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  overflow: hidden !important;
+}
+
+.h-line {
+  background: #D9D9D9;
+  width: 3px;
+  //height: 487px;
+}
+
+.img-chooser{
+  border-radius: 8px;
+  border: 2px dashed var(--color-blue, #007AFF);
+  background: rgba(0, 122, 255, 0.08);
+  height: 75px;
+}
+
+.attachment-image {
+  width: 100%;
+  height: 152px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  //background: linear-gradient(316deg, rgba(30, 30, 30, 0.50) 7.60%, rgba(30, 30, 30, 0.08) 57.74%), url(<path-to-image>), lightgray 50% / cover no-repeat;
+}
+
+.attachment-pdf{
+  border-radius: 8px;
+  background: rgba(231, 73, 46, 0.08);
+  width: 100%;
+  height: 89px;
+  flex-shrink: 0;
+  color: #E7492E;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+
+.comment-text{
+  padding: 12px 16px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #d4d4d4;
+}

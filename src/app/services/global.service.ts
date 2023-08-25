@@ -1,6 +1,6 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {TokenPayload} from "../../payloads/token-payload";
-import {Token} from "../../payloads/token";
+import {TokenPayload} from "../payloads/token-payload";
+import {Token} from "../payloads/token";
 import jwt_decode from "jwt-decode";
 import {isPlatformBrowser} from "@angular/common";
 import {Router} from "@angular/router";

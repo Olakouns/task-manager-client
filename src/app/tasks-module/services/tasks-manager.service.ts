@@ -3,9 +3,10 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Dashboard} from "../../models/dashboard";
 import {Observable} from "rxjs";
-import {ApiResponse} from "../../../payloads/api-response";
+import {ApiResponse} from "../../payloads/api-response";
 import {TaskCategory} from "../../models/task-category";
 import {Tasks} from "../../models/tasks";
+import { TaskComment } from 'src/app/models/task-comment';
 
 @Injectable({
   providedIn: 'root'
@@ -71,9 +72,33 @@ export class TasksManagerService {
     return this.httpClient.delete<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}`)
   }
 
-  addUserToTheTask(dashboardId: string, taskCategoryId: string, tasksId: string): Observable<ApiResponse> {
-    return this.httpClient.put<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/add-user`, {})
+  addUserToTheTask(dashboardId: string, taskCategoryId: string, tasksId: string, profileId: string): Observable<ApiResponse> {
+    return this.httpClient.put<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/add-user?profileId=${profileId}`, {})
   }
+
+  removeUserFromTask(dashboardId: string, taskCategoryId: string, tasksId: string, profileId: string): Observable<ApiResponse> {
+    return this.httpClient.delete<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/add-user?profileId=${profileId}`, {})
+  }
+
+
+  attachFileToTheTask(dashboardId: string, taskCategoryId: string, tasksId: string, mediaFileId: number): Observable<ApiResponse> {
+    return this.httpClient.put<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/attach-file?mediaFileId=${mediaFileId}`, {})
+  }
+
+  removeFileFromTask(dashboardId: string, taskCategoryId: string, tasksId: string, mediaFileId: number): Observable<ApiResponse> {
+    return this.httpClient.delete<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/attach-file?mediaFileId=${mediaFileId}`, {})
+  }
+
+  addCommentToTheTasks(dashboardId: string, taskCategoryId: string, tasksId: string, taskComment: TaskComment): Observable<TaskComment> {
+    return this.httpClient.post<TaskComment>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/comment`, taskComment)
+  }
+
+  removeCommentFromTask(dashboardId: string, taskCategoryId: string, tasksId: string, taskCommentId: number): Observable<ApiResponse> {
+    return this.httpClient.delete<ApiResponse>(`${this.BASE_URL}/dashboard/${dashboardId}/task-categories/${taskCategoryId}/tasks/${tasksId}/comment?taskCommentId=${taskCommentId}`, {})
+  }
+
+
+
 
 
 }

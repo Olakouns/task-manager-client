@@ -73,9 +73,9 @@ export class TasksManagementComponent implements OnInit {
     this.tasksManagerService.getTaskCategoryByDashboard(dashboardId).subscribe({
       next: response => {
         this.taskCategories = response;
-        console.log(this.taskCategories.length);
       },
       error: err => {
+        // todo: error here
       }
     })
   }

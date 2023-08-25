@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Token} from "../../../payloads/token";
-import {ApiResponse} from "../../../payloads/api-response";
+import {Token} from "../../payloads/token";
+import {ApiResponse} from "../../payloads/api-response";
 import {environment} from "../../../environments/environment";
-import {LoginRequest} from "../../../payloads/login-request";
+import {LoginRequest} from "../../payloads/login-request";
 import {map, Observable} from "rxjs";
 
 @Injectable({

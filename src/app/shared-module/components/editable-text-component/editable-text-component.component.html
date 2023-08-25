@@ -1,0 +1,26 @@
+<div (dblclick)="editMode = true">
+  <ng-container *ngIf="!editMode; else editModeTemplate">
+    <h4 class="text-blue">{{ editableText }}</h4>
+  </ng-container>
+
+  <ng-template #editModeTemplate>
+    <ng-container [ngSwitch]="editType">
+      <mat-form-field appearance="outline" class="w-50" *ngSwitchCase="'input'">
+        <input id="username" matInput placeholder="title"
+               (keyup.enter)="saveEdit()"
+               (blur)="cancelEdit()"
+               [(ngModel)]="editableText">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-50" *ngSwitchCase="'textarea'">
+        <textarea
+          [(ngModel)]="editableText"
+          (keyup.enter)="saveEdit()"
+          (blur)="cancelEdit()"
+        ></textarea>
+      </mat-form-field>
+
+
+    </ng-container>
+  </ng-template>
+</div>

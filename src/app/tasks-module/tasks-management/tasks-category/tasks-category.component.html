@@ -5,7 +5,7 @@
       <h6>{{taskCategory.name}}</h6>
     </div>
     <div>
-      <mat-icon matTooltip="add task" matTooltipPosition="above" class="cursor-pointer me-3"
+      <mat-icon (click)="addTasks()" matTooltip="add task" matTooltipPosition="above" class="cursor-pointer me-3"
                 svgIcon="addCircle"></mat-icon>
       <mat-icon svgIcon="moreH" [matMenuTriggerFor]="menu" class="cursor-pointer"></mat-icon>
       <mat-menu #menu="matMenu">
@@ -17,11 +17,11 @@
 
   <div
     cdkDropList
-    [cdkDropListData]="todo"
+    [cdkDropListData]="tasks"
     class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let item of todo" cdkDrag>
-      <app-task-item [taskCategory]="taskCategory"></app-task-item>
+    (cdkDropListDropped)="drop($event, taskCategory)">
+    <div *ngFor="let task of tasks" cdkDrag>
+      <app-task-item [task]="task"  [taskCategory]="taskCategory"></app-task-item>
     </div>
   </div>
 </ng-container>
